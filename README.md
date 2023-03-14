@@ -8,7 +8,7 @@ RES0LUTI0N is a RAT injector not detected by antivirus software coded in python 
 
 - **Undetected by Virustotal**
 - **Windows defender disabler**
-- **Autorun system**
+- **Registry autorun system**
 - **Can inject any python code, it will of course be made undetectable**
 - **Easy to use**
 - **Quick use**
