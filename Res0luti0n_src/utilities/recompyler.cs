@@ -26,11 +26,9 @@ namespace ConsoleApp
                 recompyledContent.Append(recompyled[part]);
             }
 
-            // Write the recompyled Python code to a temporary file
             var tempFilePath = Path.GetTempFileName();
             File.WriteAllText(tempFilePath, recompyledContent.ToString(), Encoding.UTF8);
 
-            // Run the Python script in a separate process
             var processInfo = new ProcessStartInfo("python", tempFilePath);
             processInfo.UseShellExecute = false;
             processInfo.RedirectStandardOutput = true;
@@ -46,7 +44,6 @@ namespace ConsoleApp
                 process.WaitForExit();
             }
 
-            // Delete the temporary file
             File.Delete(tempFilePath);
         }
 
