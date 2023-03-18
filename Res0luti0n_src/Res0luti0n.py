@@ -121,9 +121,12 @@ def builder(banner, m, w):
         main()
     elif webhook_checker(webhook) != "Valid":
         os.system("cls")
-        print(f"{banner}\n\n {w}[{m}!{w}] The webhook you entered seems to be wrong...")
-        time.sleep(3)
-        main()
+        agree = input(f"{banner}\n\n {w}[{m}!{w}] The webhook you entered seems to be wrong. Do you want to continue without using webhook (y/n) ?\n ---\n {w}[{m}>{w}] ")
+        if agree == 'y':
+            pass
+        elif agree == 'n':
+            main()
+        else:   main()     
     elif not name:
         os.system("cls")
         print(f"{banner}\n\n {w}[{m}!{w}] Please enter a valid name!")
@@ -164,9 +167,10 @@ def settings_menu(banner, w, m):
         os.system("cls")
         print(f"{banner}\n -----\n")
         print(f" {m}[{w}+{m}]{w} RAT Setup:\n")
-        print(f" {m}[{w}1{m}]{w} Change RAT name      |    {m}[{w}4{m}]{w} Back to home")
-        print(f" {m}[{w}2{m}]{w} Change RAT path      |")
-        print(f" {m}[{w}3{m}]{w} Change RAT webhook   |")
+        print(f" {m}[{w}1{m}]{w} Change RAT name")
+        print(f" {m}[{w}2{m}]{w} Change RAT path")
+        print(f" {m}[{w}3{m}]{w} Change RAT webhook (optional)")
+        print(f" {m}[{w}4{m}]{w} Back to home")
         choice_settings = input(f"\n {m}[{w}->{m}]{w} Enter your choice here: ")
         
         if choice_settings == "1": 
@@ -200,7 +204,7 @@ def settings_menu(banner, w, m):
         elif choice_settings == "4": 
             os.system("cls")
             main()
-            break
+        
 
 
 def main():
