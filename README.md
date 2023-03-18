@@ -45,7 +45,8 @@ python Res0luti0n.py
 ![img](https://imgur.com/ysKokH4.png)
 
 ### 4. Last step
-Press `4` if you are already in the parameter menu, otherwise just press `1` to build your RAT. For the builder to work properly, it is necessary to replace the webhook in your RAT by `WBH`
+Press `4` if you are already in the parameter menu, otherwise just press `1` to build your RAT. 
+If you want to use the webhook option, it is necessary to replace the webhook in your RAT by `WBH`
 
 *↦Troubleshooting: If this does not work, check that you have entered the correct parameters (like a correct size for shoes)*
 
@@ -55,8 +56,8 @@ For the proper functioning of the injector it is imperative that the entirety of
 *↦Hint: I recommend you to use it as a module in a python script, it allows to trivialize it and to hide it*
 
 ## Troubleshooting
-- Check that you have replaced the webhook location with `WBH` in your RAT code
 - Don't forget to install `pywin32` and the necessary modules to your RAT on the target device
+- Verify python is installed properly
 
 ## Disclaimer
 - Only for **educationnal, personal or good puposes**.
