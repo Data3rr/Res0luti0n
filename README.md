@@ -57,9 +57,11 @@ For the proper functioning of the injector it is imperative that the entirety of
 ## Thanks 
 ### In this project malware bases are already included.
  - Like [AstraaDev](https://github.com/AstraaDev) Token Grabber v2
+
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=AstraaDev&repo=Discord-Token-Grabber-V2&show_owner=true)](https://github.com/AstraaDev/Discord-Token-Grabber-V2)
 
 - Or Cooked Grabber by [Mouadessalim](https://github.com/mouadessalim)
+
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=mouadessalim&repo=Cookedgrabber&show_owner=true)](https://github.com/mouadessalim/CookedGrabber)
 
 ## Disclaimer
