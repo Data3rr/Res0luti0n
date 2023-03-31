@@ -46,6 +46,7 @@ python Res0luti0n.py
 
 ### 4. Last step
 Press `5` if you are already in the parameter menu, otherwise just press `1` to build your RAT. 
+
 *↦Troubleshooting: If this does not work, check that you have entered the correct parameters (like a correct size for shoes)*
 
 ### 5. Usage
