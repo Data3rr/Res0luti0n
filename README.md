@@ -41,7 +41,6 @@ python Res0luti0n.py
 ![img](https://imgur.com/NjqT2hq.png)
 
 2) Select Choose the number you want to change the setting you want and follow the instructions:
-*↦Hint: Start with the webhook which is the most important for the proper functioning of the program*
 
 ![img](https://imgur.com/iQIwvBc.png)
 
