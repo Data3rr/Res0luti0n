@@ -3,7 +3,7 @@
 
 # RES0LUTI0N
 
-RES0LUTI0N is a malware builder undetected by Windows Defender coded in python and C#. It uses a randomized obfuscation system, a RAT partitioning system and a recompilation system at the same time.
+RES0LUTI0N is a malware builder undetected by Windows Defender coded in python and C#. It uses a randomized obfuscation system, a malware partitioning system and a recompilation system at the same time.
 ## Features
 
 - **Undetected by Windows Defender**
