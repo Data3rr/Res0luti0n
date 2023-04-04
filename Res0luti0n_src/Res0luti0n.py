@@ -156,10 +156,10 @@ def choice_rat(banner, w, m):
         
         elif choice_rat == "3":
             os.system("cls")
-            input(f"{banner}\n\n {m}[{w}!{m}]{w} Warning: If you select your own RAT you must enter your webhook manually !\n ----\n {m}[{w}+{m}]{w} Press enter to continue...")
+            input(f"{banner}\n\n {m}[{w}!{m}]{w} Warning: If you select your own malware you must enter your webhook manually !\n ----\n {m}[{w}+{m}]{w} Press enter to continue...")
             os.system("cls")
-            path = input(f"{banner}\n\n {w}[{m}+{w}] Enter your RAT path here: ")
-            req = input(f" -----\n {w}[{m}+{w}] Enter your RAT requirements here: ")
+            path = input(f"{banner}\n\n {w}[{m}+{w}] Enter your malware path here: ")
+            req = input(f" -----\n {w}[{m}+{w}] Enter your malware requirements here: ")
             update_json("path", path)
             update_json("requirements", req )
             os.system("cls")
@@ -228,9 +228,9 @@ def settings_menu(banner, w, m):
         os.system("cls")
         print(f"{banner}\n -----\n")
         print(f" {m}[{w}+{m}]{w} RAT Setup:\n")
-        print(f" {m}[{w}1{m}]{w} Select your RAT    | {m}[{w}4{m}]{w} EXE settings")
-        print(f" {m}[{w}2{m}]{w} Change RAT name    | {m}[{w}5{m}]{w} Back to home")
-        print(f" {m}[{w}3{m}]{w} Change RAT webhook")
+        print(f" {m}[{w}1{m}]{w} Select your malware    | {m}[{w}4{m}]{w} EXE settings")
+        print(f" {m}[{w}2{m}]{w} Change malware name    | {m}[{w}5{m}]{w} Back to home")
+        print(f" {m}[{w}3{m}]{w} Change malware webhook")
         choice_settings = input(f"\n {m}[{w}->{m}]{w} Enter your choice here: ")
         
         if choice_settings == "1": 
@@ -238,10 +238,10 @@ def settings_menu(banner, w, m):
             
         elif choice_settings == "2": 
             os.system("cls")
-            name = input(f"{banner}\n\n {w}[{m}+{w}] Enter rat name here: ")
+            name = input(f"{banner}\n\n {w}[{m}+{w}] Enter malware name here: ")
             update_json("name", name)
             os.system("cls")
-            print(f"{banner}\n\n {m}[{w}+{m}]{w} RAT name updated succesfully as ({name}) !")
+            print(f"{banner}\n\n {m}[{w}+{m}]{w} Malware name updated succesfully as ({name}) !")
             time.sleep(3)
             
         elif choice_settings == "3": 
@@ -252,7 +252,7 @@ def settings_menu(banner, w, m):
             if webhook_checker(webhook) == "Invalid":
                 print(f"{banner}\n\n {m}[{w}!{m}]{w} The webhook you entered seems to be wrong..")
                 time.sleep(3)
-            else: print(f"{banner}\n\n {m}[{w}+{m}]{w} RAT webhook updated succesfully !"), time.sleep(3)
+            else: print(f"{banner}\n\n {m}[{w}+{m}]{w} Malware webhook updated succesfully !"), time.sleep(3)
             
         elif choice_settings == "4":
             exe_settings(banner, w, m)
@@ -326,7 +326,7 @@ def builder(banner, m, w):
         shutil.rmtree(name, ignore_errors=True)
             
         os.system("cls")
-        input(f"{banner}\n\n {w}[{m}+{w}] Your {name} RAT has been successfully built in ({name}.zip)!")
+        input(f"{banner}\n\n {w}[{m}+{w}] Your {name} malware has been successfully built in ({name}.zip)!")
         main()
     
     except Exception as e:
@@ -344,7 +344,7 @@ def main():
  ██╔══██╗██╔══╝  ╚════██║██║   ██║██║     ██║   ██║   ██║   ██║██║   ██║██║╚██╗██║
  ██║  ██║███████╗███████║╚██████╔╝███████╗╚██████╔╝   ██║   ██║╚██████╔╝██║ ╚████║
  ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝    ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
- {w}by 0xSp00f3d | Only for educational or good puposes""".replace('█', f'{w}█{m}')
+ {w}by 0xSpoofed | Only for educational or good puposes""".replace('█', f'{w}█{m}')
     
     rat_name, rat_path, requirements, webhook, exe_yn, exe_comp, logo = get_settings()
     exe_yn_ehn = "Yes" if exe_yn == "y" else "No" if exe_yn == "n" else "Error"
@@ -363,8 +363,8 @@ def main():
         print(f"""{banner}\n -----\n
  {m}[{w}+{m}]{w} Menu:              |    {m}[{w}INFO{m}]{w} Current Settings:            
                         |
- {m}[{w}1{m}]{w} Build              |    {m}[{w}>{m}]{w} RAT name: {"Unselected" if rat_name == '' else rat_name} {m}[{w}>{m}]{w} Webhook: {webhook_info}
- {m}[{w}2{m}]{w} Setup              |    {m}[{w}>{m}]{w} RAT path: {"Invalid" if rat_path == '' else os.path.basename(rat_path)} {m}[{w}>{m}]{w} ExE compiler: {exe_yn_ehn} | {exe_comp_ehn}
+ {m}[{w}1{m}]{w} Build              |    {m}[{w}>{m}]{w} Malware name: {"Unselected" if rat_name == '' else rat_name} {m}[{w}>{m}]{w} Webhook: {webhook_info}
+ {m}[{w}2{m}]{w} Setup              |    {m}[{w}>{m}]{w} Malware path: {"Invalid" if rat_path == '' else os.path.basename(rat_path)} {m}[{w}>{m}]{w} ExE compiler: {exe_yn_ehn} | {exe_comp_ehn}
  {m}[{w}3{m}]{w} Exit               |    {m}[{w}>{m}]{w} Requirements path: {req_check} {m}[{w}>{m}]{w} Logo: {os.path.basename(logo) if logo != "None" else "None"} """) 
         
         choice = input(f"\n {m}[{w}->{m}]{w} Enter your choice here: ")
