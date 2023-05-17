@@ -21,8 +21,8 @@ def rich_presence():
         rpc.update(
             large_image= "resolution_logo",
             large_text = f"Res0luti0n",
-            details = "Version 2.0",
-            state = "by 0xSp00f3d",
+            details = f"Python malware builder (POC)",
+            state = "by 0xSpoofed",
             buttons=[{"label": "Github", "url": "https://github.com/0xSpoofed/Res0luti0n"}]
         )
     except Exception as e:
@@ -379,6 +379,6 @@ def main():
     
     
 if __name__ == '__main__':
-    os.system('title Resolution builder')
+    os.system(f"title Resolution builder")
     rich_presence()
     main()
