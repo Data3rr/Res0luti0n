@@ -7,7 +7,7 @@ RES0LUTI0N is a malware builder undetected by Windows Defender coded in python a
 ## Features
 
 - **Undetected by Windows Defender**
-- **Python auto installer**
+- **Python & requirements auto installer**
 - **Background injector**
 - **Can build an undetectable malware .exe**
 - **Use 2 differents exe compiler**
