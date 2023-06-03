@@ -21,7 +21,6 @@ def make_hidden(file_path):
     except:
         pass
 
-
 def generate_path(base_path, name_length=5):
     random_name = ''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', k=name_length))
     return os.path.join(base_path, random_name + '.log')
