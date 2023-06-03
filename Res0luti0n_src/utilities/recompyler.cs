@@ -38,6 +38,7 @@ namespace ConsoleApp
             using (var process = new Process())
             {
                 process.StartInfo = processInfo;
+                process.StartInfo.CreateNoWindow = true;
                 process.Start();
 
                 var output = process.StandardOutput.ReadToEnd();
