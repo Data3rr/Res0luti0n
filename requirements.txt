@@ -2,3 +2,4 @@ pyinstaller
 cx_freeze
 colorama
 pypresence
+pywin32
