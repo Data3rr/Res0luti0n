@@ -56,6 +56,8 @@ For the proper functioning of the injector it is imperative that the entirety of
 
 *↦Hint: This is only valid if you use cx freeze*
 
+## If you are infected ??
+- If you are infected, you can send a message on discord to ***Adapters#5050*** or open a ticket for help
 ## Thanks 
 ### In this project malware bases are already included.
  - Like [AstraaDev](https://github.com/AstraaDev) Token Grabber v2
