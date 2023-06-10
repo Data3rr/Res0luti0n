@@ -87,8 +87,8 @@ def script_hasher(script):
 # Function to encode a part in base64
 def base64_encoder(data):
     bytes_text = data.encode('UTF-8')
-    b85_text = base64.b64encode(bytes_text)
-    return b85_text.decode('UTF-8')
+    b64_text = base64.b64encode(bytes_text)
+    return b64_text.decode('UTF-8')
 
 # Function to encode a part with Caesar method (return final encoded parts)
 def part_encoder(part, alpha):
