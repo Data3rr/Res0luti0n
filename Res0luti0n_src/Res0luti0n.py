@@ -175,9 +175,9 @@ def builder(banner, m, w):
             icon_option = f"--icon={icon}" if icon != "None" else ""
             
             if exe_comp == "Cx_freeze":
-                cmd = f"cxfreeze -c {script_name} --target-dir {name}-exe {icon_option} --packages=win32api --packages=win32con"
+                cmd = f"""cxfreeze -c "{script_name}" --target-dir {name}-exe {icon_option} --packages=win32api --packages=win32con"""
             elif exe_comp == "Pyinstaller":
-                cmd = f"pyinstaller --noconfirm --onefile --console {icon_option} --distpath {target_dir} --hidden-import win32api --hidden-import win32con {script_name}"
+                cmd = f"""pyinstaller --noconfirm --onefile --console {icon_option} --distpath {target_dir} --hidden-import win32api --hidden-import win32con "{script_name}" """
             os.system("cls")
             os.system(cmd)
             
@@ -281,10 +281,10 @@ def exe_settings(banner, w, m):
 
         elif choice_exe == "3": # Logo changer
                 os.system("cls")
-                logo_path = input(f"{banner}\n\n {m}[{w}+{m}]{w} Enter your exe logo here (.ico): ")
-                if logo_path[-3:] != "ico":
+                logo_path = input(f"{banner}\n\n {m}[{w}+{m}]{w} Enter your .ico here (enter 'None' for no logo): ")
+                if logo_path is None or not logo_path.endswith('.ico'):
                     os.system("cls")
-                    print(f"{banner}\n\n {m}[{w}+{m}]{w} Please enter a correct icon (.ico)! ")
+                    print(f"{banner}\n\n {m}[{w}+{m}]{w} Invalid logo (use a path without spaces and quotes)! ")
                     time.sleep(3)
                 else:
                     update_json("icon", logo_path)
